@@ -1,4 +1,4 @@
-FROM node:18.18.2-buster-slim
+FROM node:18.18-slim
 WORKDIR /app
 COPY package.json .
 ARG NODE_ENV
