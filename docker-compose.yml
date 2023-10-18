@@ -6,3 +6,11 @@ services:
       - "3000:3000"
     environment:
       - PORT=3000
+    volumes:
+      - mongo-db-named-volume:/data/db
+    depends_on:
+      - mongo-db
+  mongo-db:
+    image: mongo:7.0.2-jammy
+volumes:
+  mongo-db-named-volume:
