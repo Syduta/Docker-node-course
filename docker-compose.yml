@@ -12,5 +12,7 @@ services:
       - mongo-db
   mongo-db:
     image: mongo:7.0.2-jammy
+  redis:
+    image: redis:alpine3.18
 volumes:
   mongo-db-named-volume:
