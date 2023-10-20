@@ -24,7 +24,6 @@ let redisClient = redis.createClient({
 const postRouter = require("./routes/postRoutes");
 const userRouter = require("./routes/userRoutes");
 
-
 const connectWithRetry = () => {
     mongoose.connect(`mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`)
         .then(() => console.log("(^w^) connecté à la base de données (^w^)"))
@@ -35,6 +34,8 @@ const connectWithRetry = () => {
 }
 
 connectWithRetry();
+
+app.enable("trust proxy");
 
 app.use(session({
     store: new RedisStore({
@@ -52,8 +53,9 @@ app.use(session({
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/api/v1", (req, res) => {
     res.send("<h2>Hello There !</h2>");
+    console.log("8==3 ~")
 });
 
 app.use("/api/v1/posts", postRouter);
